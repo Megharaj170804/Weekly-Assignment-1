@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .todo-container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            min-width: 320px;
+            margin-top: 40px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #d8000c;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <div class="input-group">
+            <input type="text" id="todoInput" placeholder="Add a new task">
+            <button id="addBtn">Add</button>
+        </div>
+        <ul id="todoList"></ul>
+    </div>
+    <script>
+        const addBtn = document.getElementById('addBtn');
+        const todoInput = document.getElementById('todoInput');
+        const todoList = document.getElementById('todoList');
+
+        addBtn.addEventListener('click', function() {
+            const value = todoInput.value.trim();
+            if (value) {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${value}</span> <button class="delete-btn" title="Delete">🗑️</button>`;
+                todoList.appendChild(li);
+                todoInput.value = '';
+                todoInput.focus();
+            }
+        });
+
+        // Event delegation for delete
+        todoList.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const li = e.target.closest('li');
+                if (li) li.remove();
+            }
+        });
+    </script>
+</body>
+</html>
