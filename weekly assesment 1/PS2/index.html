@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .counter-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #count {
+            font-size: 32px;
+            min-width: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <button id="decrement">−</button>
+        <span id="count">0</span>
+        <button id="increment">+</button>
+    </div>
+    <script>
+        let count = 0;
+        const countDisplay = document.getElementById('count');
+        document.getElementById('increment').addEventListener('click', function() {
+            count++;
+            countDisplay.innerText = count;
+        });
+        document.getElementById('decrement').addEventListener('click', function() {
+            count--;
+            countDisplay.innerText = count;
+        });
+    </script>
+</body>
+</html>
